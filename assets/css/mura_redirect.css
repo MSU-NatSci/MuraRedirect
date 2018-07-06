@@ -1,0 +1,21 @@
+.content {
+    max-width: 100% !important;
+}
+
+@media (min-width: 1200px) {
+    th.hidden-lg, td.hidden-lg {
+        display: table-cell !important;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+    .hidden-lg {
+        display: none !important;
+    }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+    th.hidden-lg, td.hidden-lg {
+        display: none !important;
+    }
+}
