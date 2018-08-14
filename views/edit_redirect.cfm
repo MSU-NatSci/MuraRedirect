@@ -45,7 +45,7 @@
             <label><input type="checkbox" name="sourceDomainRegexp" value="true"#redirect.get('sourceDomainRegexp') ? ' checked' : ''#> Regular expression</label>
         </div>
         <div class="mura-control-group">
-            <label for="sourcePathValue">Source Path (should end with a /)</label>
+            <label for="sourcePathValue">Source Path (should end with a / if specified)</label>
             <input id="sourcePathValue" name="sourcePathValue" type="text"
                 value="#encodeForHTMLAttribute(redirect.get('sourcePathValue'))#">
             <label><input type="checkbox" name="sourcePathRegexp" value="true"#redirect.get('sourcePathRegexp') ? ' checked' : ''#> Regular expression</label>
