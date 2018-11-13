@@ -256,23 +256,30 @@ component {
     public struct function getRedirectURL(siteID, protocol, domain, filePath) {
         // get all the redirects that could match (not checking regular expressions)
         // NOTE: siteID test is unnecessary, it's added by Mura
-        var feed = m.getFeed('redirect')
-            .where()
-            .prop('enabled').isEQ(true)
-            .andOpenGrouping()
-                .prop('sourceProtocolValue').null()
-                .orProp('sourceProtocolValue').isEQ(protocol)
-            .closeGrouping()
-            .andOpenGrouping()
-                .prop('sourceDomainValue').null()
-                .orProp('sourceDomainRegexp').isEQ(true)
-                .orProp('sourceDomainValue').isEQ(domain)
-            .closeGrouping()
-            .andOpenGrouping()
-                .prop('sourcePathValue').null()
-                .orProp('sourcePathRegexp').isEQ(true)
-                .orProp('sourcePathValue').isEQ(filePath)
-            .closeGrouping();
+        try {
+          var feed = m.getFeed('redirect')
+              .where()
+              .prop('enabled').isEQ(true)
+              .andOpenGrouping()
+                  .prop('sourceProtocolValue').null()
+                  .orProp('sourceProtocolValue').isEQ(protocol)
+              .closeGrouping()
+              .andOpenGrouping()
+                  .prop('sourceDomainValue').null()
+                  .orProp('sourceDomainRegexp').isEQ(true)
+                  .orProp('sourceDomainValue').isEQ(domain)
+              .closeGrouping()
+              .andOpenGrouping()
+                  .prop('sourcePathValue').null()
+                  .orProp('sourcePathRegexp').isEQ(true)
+                  .orProp('sourcePathValue').isEQ(filePath)
+              .closeGrouping();
+        } catch (any e) {
+          writeLog("getFeed('redirect'): #e.message#");
+          return {
+            found: false
+          };
+        }
         var redirects = feed.getIterator();
         var siteBean = m.getBean('site').loadBy(siteid=siteID);
         var siteProtocol = siteBean.getUseSSL() ? 'https' : 'http';
