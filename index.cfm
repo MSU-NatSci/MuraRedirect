@@ -1,6 +1,8 @@
 <!--- Main plugin page. All requests are being handled here. --->
 
 <cfscript>
+    include 'plugin/config.cfm';
+
     import MuraRedirect.model.Redirects;
 
     m = $;

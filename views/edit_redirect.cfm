@@ -1,4 +1,9 @@
 
+<cfif getBaseTemplatePath() eq getCurrentTemplatePath()>
+    Direct execution denied.
+    <cfabort>
+</cfif>
+
 <cfscript>
     if (!isDefined('redirect')) {
         id = m.event('id');

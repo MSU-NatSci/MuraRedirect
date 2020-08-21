@@ -1,3 +1,8 @@
+<cfif getBaseTemplatePath() eq getCurrentTemplatePath()>
+    Direct execution denied.
+    <cfabort>
+</cfif>
+
 <!--- check the table exists first --->
 <cfset dbUtility = m.getBean('dbUtility')>
 <cfset redirectTable = m.getBean('redirect').getTable()>

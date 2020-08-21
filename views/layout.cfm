@@ -1,3 +1,8 @@
+<cfif getBaseTemplatePath() eq getCurrentTemplatePath()>
+    Direct execution denied.
+    <cfabort>
+</cfif>
+
 <!--- This template handles the layout for all pages in the plugin --->
 <cfinclude template="../plugin/settings.cfm">
 
